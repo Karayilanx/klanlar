@@ -3,14 +3,15 @@ using OpenQA.Selenium;
 using static System.Windows.Forms.Design.AxImporter;
 using OpenQA.Selenium.Support.UI;
 using Timer = System.Threading.Timer;
+using OpenQA.Selenium.Interactions;
 
 namespace klanlar
 {
     public partial class Form1 : Form
     {
         IWebDriver driver = new ChromeDriver();
-        Timer kislaTimer;
-        Timer temizlikTimer;
+        Timer? kislaTimer;
+        Timer? temizlikTimer;
         static void RT(Action action, int seconds, CancellationToken token)
         {
             if (action == null)
@@ -32,8 +33,9 @@ namespace klanlar
             //options.AddExcludedArgument("excludeSwitches");
             //options.AddAdditionalOption("useAutomationExtension",false);
 
+            Control.CheckForIllegalCrossThreadCalls = false;
+            setStatusTexts();
             driver.Navigate().GoToUrl("https://www.klanlar.org/");
-
             //var user = driver.FindElement(By.Id("user")); 
             //var pass = driver.FindElement(By.Id("password"));
             //var loginBtn = driver.FindElement(By.ClassName("btn-login"));
@@ -52,18 +54,28 @@ namespace klanlar
         {
             try
             {
-                if (kislaTimer != null) return;
-                var startTimeSpan = TimeSpan.Zero;
-                var periodTimeSpan = TimeSpan.FromMinutes(Convert.ToInt32(kislaDakikaBox.Text));
-
-                kislaTimer = new System.Threading.Timer((e) =>
+                if (kislaTimer != null)
                 {
-                    askerBas();
-                }, null, startTimeSpan, periodTimeSpan);
+                    kislaTimer.Dispose();
+                    kislaTimer = null;
+                }
+                else
+                {
+                    var startTimeSpan = TimeSpan.Zero;
+                    var periodTimeSpan = TimeSpan.FromMinutes(Convert.ToInt32(kislaDakikaBox.Text));
+
+                    kislaTimer = new System.Threading.Timer((e) =>
+                    {
+                        askerBas();
+                    }, null, startTimeSpan, periodTimeSpan);
+                }
+
+
+                setStatusTexts();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Kafaný Sikiyim(Kýþla)");
+                consoleBox.Text += "\n" + "Hata(Kýþla): " + ex.ToString();
             }
 
         }
@@ -91,12 +103,12 @@ namespace klanlar
 
 
                 var sendBtn = driver.FindElements(By.ClassName("btn-recruit"))[0];
-
+                consoleBox.Text += "\n" + "Asker Basýldý";
                 sendBtn.Click();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Kafaný Sikiyim(Kýþla)");
+                consoleBox.Text += "\n" + "Hata(Kýþla): " + ex.ToString();
             }
         }
 
@@ -104,26 +116,40 @@ namespace klanlar
         {
             try
             {
-                if (temizlikTimer != null) return;
-                var startTimeSpan = TimeSpan.Zero;
-                var periodTimeSpan = TimeSpan.FromMinutes(5);
-
-                temizlikTimer = new System.Threading.Timer((e) =>
+                if (temizlikTimer != null)
                 {
-                    temizlik();
-                }, null, startTimeSpan, periodTimeSpan);
+                    temizlikTimer.Dispose();
+                    temizlikTimer = null;
+                }
+                else
+                {
+                    var startTimeSpan = TimeSpan.Zero;
+                    var periodTimeSpan = TimeSpan.FromMinutes(5);
+
+                    temizlikTimer = new System.Threading.Timer((e) =>
+                    {
+                        temizlik();
+                    }, null, startTimeSpan, periodTimeSpan);
+                }
+                setStatusTexts();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Kafaný Sikiyim(Temizlik)");
+                consoleBox.Text +=  "\n" + "Hata(Temizlik): " + ex.ToString();
             }
         }
 
         void temizlik()
         {
+            var ac = new Actions(driver);
+
             try
             {
                 driver.Navigate().GoToUrl(temizlemeLinkBox.Text.ToString());
+                Thread.Sleep(1000);
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+                Thread.Sleep(500);
                 var spear = driver.FindElement(By.Name("spear"));
                 var options = driver.FindElements(By.ClassName("status-specific"));
 
@@ -148,14 +174,37 @@ namespace klanlar
                             default:
                                 break;
                         }
+                        Thread.Sleep(500);
                         res[0].Click();
+                        consoleBox.Text += "\n" + (i+1).ToString() + ". temizlik yapýldý";
                         Thread.Sleep(5000);
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Kafaný Sikiyim(Temizlik)");
+                consoleBox.Text += "\n" + "Hata(Temizlik): " + ex.ToString();
+            }
+        }
+
+        void setStatusTexts()
+        {
+            if(kislaTimer == null)
+            {
+                kislaStatus.Text = "Durdu";
+            }
+            else
+            {
+                kislaStatus.Text = "Çalýþýyor";
+            }
+
+            if (temizlikTimer == null)
+            {
+                temizleStatus.Text = "Durdu";
+            }
+            else
+            {
+                temizleStatus.Text = "Çalýþýyor";
             }
         }
     }

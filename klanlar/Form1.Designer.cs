@@ -44,6 +44,11 @@
             this.ikinciMizrakBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.ucuncuMizrakBox = new System.Windows.Forms.TextBox();
+            this.consoleBox = new System.Windows.Forms.RichTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.kislaStatus = new System.Windows.Forms.Label();
+            this.temizleStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // askerbasButton
@@ -179,11 +184,60 @@
             this.ucuncuMizrakBox.Size = new System.Drawing.Size(155, 23);
             this.ucuncuMizrakBox.TabIndex = 14;
             // 
+            // consoleBox
+            // 
+            this.consoleBox.BackColor = System.Drawing.Color.White;
+            this.consoleBox.Location = new System.Drawing.Point(571, 12);
+            this.consoleBox.Name = "consoleBox";
+            this.consoleBox.ReadOnly = true;
+            this.consoleBox.Size = new System.Drawing.Size(217, 411);
+            this.consoleBox.TabIndex = 16;
+            this.consoleBox.Text = "";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(25, 225);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 15);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Durum:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(303, 225);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(47, 15);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Durum:";
+            // 
+            // kislaStatus
+            // 
+            this.kislaStatus.AutoSize = true;
+            this.kislaStatus.Location = new System.Drawing.Point(78, 225);
+            this.kislaStatus.Name = "kislaStatus";
+            this.kislaStatus.Size = new System.Drawing.Size(0, 15);
+            this.kislaStatus.TabIndex = 19;
+            // 
+            // temizleStatus
+            // 
+            this.temizleStatus.AutoSize = true;
+            this.temizleStatus.Location = new System.Drawing.Point(356, 225);
+            this.temizleStatus.Name = "temizleStatus";
+            this.temizleStatus.Size = new System.Drawing.Size(0, 15);
+            this.temizleStatus.TabIndex = 20;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.temizleStatus);
+            this.Controls.Add(this.kislaStatus);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.consoleBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.ucuncuMizrakBox);
             this.Controls.Add(this.label6);
@@ -225,5 +279,10 @@
         private TextBox ikinciMizrakBox;
         private Label label7;
         private TextBox ucuncuMizrakBox;
+        private RichTextBox consoleBox;
+        private Label label8;
+        private Label label9;
+        private Label kislaStatus;
+        private Label temizleStatus;
     }
 }
