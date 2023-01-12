@@ -77,7 +77,10 @@ namespace klanlar
 			try
 			{
 				driver.Navigate().GoToUrl(kislaLinkBox.Text.ToString());
-
+				Thread.Sleep(1000);
+				IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+				js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+				Thread.Sleep(500);
 				var spear = driver.FindElement(By.Name("spear"));
 				if (mizrakBox.Text == "")
 				{
