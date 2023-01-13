@@ -136,8 +136,6 @@ namespace klanlar
 
 		void temizlik()
 		{
-			var ac = new Actions(driver);
-
 			try
 			{
 				saveTemizlikTexts();
@@ -166,6 +164,9 @@ namespace klanlar
 								break;
 							case 2:
 								spear.SendKeys(ucuncuMizrakBox.Text);
+								break;
+							case 3:
+								spear.SendKeys(dorduncuMizrakBox.Text);
 								break;
 							default:
 								break;
@@ -232,7 +233,8 @@ namespace klanlar
 						new XElement("temizlik_link", ""),
 						new XElement("temizlik_bir", ""),
 						new XElement("temizlik_iki", ""),
-						new XElement("temizlik_uc", "")
+						new XElement("temizlik_uc", ""),
+						new XElement("temizlik_dort", "")
 					)
 				);
 
@@ -257,6 +259,8 @@ namespace klanlar
 			ikinciMizrakBox.Text = temizlikIkiNode.InnerText;
 			XmlNode temizlikUcNode = currentDoc.DocumentElement.SelectSingleNode("/root/temizlik_uc");
 			ucuncuMizrakBox.Text = temizlikUcNode.InnerText;
+			XmlNode temizlikDortNode = currentDoc.DocumentElement.SelectSingleNode("/root/temizlik_dort");
+			dorduncuMizrakBox.Text = temizlikDortNode.InnerText;
 		}
 
 		private void saveKislaTexts()
@@ -287,6 +291,8 @@ namespace klanlar
 			temizlikIkiNode.InnerText = ikinciMizrakBox.Text;
 			XmlNode temizlikUcNode = currentDoc.DocumentElement.SelectSingleNode("/root/temizlik_uc");
 			temizlikUcNode.InnerText = ucuncuMizrakBox.Text;
+			XmlNode temizlikDortNode = currentDoc.DocumentElement.SelectSingleNode("/root/temizlik_dort");
+			temizlikDortNode.InnerText = dorduncuMizrakBox.Text;
 
 			currentDoc.Save(KISLA_FILE_PATH);
 		}
