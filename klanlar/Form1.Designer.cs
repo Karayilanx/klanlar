@@ -51,6 +51,8 @@
 			this.temizleStatus = new System.Windows.Forms.Label();
 			this.dorduncuMizrakBox = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
+			this.okcuSayisiBox = new System.Windows.Forms.TextBox();
+			this.label11 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// askerbasButton
@@ -58,7 +60,7 @@
 			this.askerbasButton.Location = new System.Drawing.Point(95, 169);
 			this.askerbasButton.Name = "askerbasButton";
 			this.askerbasButton.Size = new System.Drawing.Size(155, 52);
-			this.askerbasButton.TabIndex = 0;
+			this.askerbasButton.TabIndex = 5;
 			this.askerbasButton.Text = "Asker Bas";
 			this.askerbasButton.UseVisualStyleBackColor = true;
 			this.askerbasButton.Click += new System.EventHandler(this.button1_Click);
@@ -84,7 +86,7 @@
 			this.mizrakBox.Location = new System.Drawing.Point(95, 69);
 			this.mizrakBox.Name = "mizrakBox";
 			this.mizrakBox.Size = new System.Drawing.Size(155, 23);
-			this.mizrakBox.TabIndex = 3;
+			this.mizrakBox.TabIndex = 2;
 			// 
 			// label2
 			// 
@@ -97,16 +99,16 @@
 			// 
 			// kislaDakikaBox
 			// 
-			this.kislaDakikaBox.Location = new System.Drawing.Point(95, 108);
+			this.kislaDakikaBox.Location = new System.Drawing.Point(95, 128);
 			this.kislaDakikaBox.Name = "kislaDakikaBox";
 			this.kislaDakikaBox.Size = new System.Drawing.Size(155, 23);
-			this.kislaDakikaBox.TabIndex = 5;
+			this.kislaDakikaBox.TabIndex = 4;
 			this.kislaDakikaBox.Text = "10";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(44, 111);
+			this.label3.Location = new System.Drawing.Point(44, 131);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(42, 15);
 			this.label3.TabIndex = 6;
@@ -117,7 +119,7 @@
 			this.temizlemeButton.Location = new System.Drawing.Point(392, 188);
 			this.temizlemeButton.Name = "temizlemeButton";
 			this.temizlemeButton.Size = new System.Drawing.Size(155, 52);
-			this.temizlemeButton.TabIndex = 7;
+			this.temizlemeButton.TabIndex = 11;
 			this.temizlemeButton.Text = "Temizle";
 			this.temizlemeButton.UseVisualStyleBackColor = true;
 			this.temizlemeButton.Click += new System.EventHandler(this.temizlemeButton_Click);
@@ -136,7 +138,7 @@
 			this.temizlemeLinkBox.Location = new System.Drawing.Point(392, 28);
 			this.temizlemeLinkBox.Name = "temizlemeLinkBox";
 			this.temizlemeLinkBox.Size = new System.Drawing.Size(155, 23);
-			this.temizlemeLinkBox.TabIndex = 8;
+			this.temizlemeLinkBox.TabIndex = 6;
 			// 
 			// label5
 			// 
@@ -152,7 +154,7 @@
 			this.birinciMizrakBox.Location = new System.Drawing.Point(392, 66);
 			this.birinciMizrakBox.Name = "birinciMizrakBox";
 			this.birinciMizrakBox.Size = new System.Drawing.Size(155, 23);
-			this.birinciMizrakBox.TabIndex = 10;
+			this.birinciMizrakBox.TabIndex = 7;
 			// 
 			// label6
 			// 
@@ -168,7 +170,7 @@
 			this.ikinciMizrakBox.Location = new System.Drawing.Point(392, 96);
 			this.ikinciMizrakBox.Name = "ikinciMizrakBox";
 			this.ikinciMizrakBox.Size = new System.Drawing.Size(155, 23);
-			this.ikinciMizrakBox.TabIndex = 12;
+			this.ikinciMizrakBox.TabIndex = 8;
 			// 
 			// label7
 			// 
@@ -184,7 +186,7 @@
 			this.ucuncuMizrakBox.Location = new System.Drawing.Point(392, 125);
 			this.ucuncuMizrakBox.Name = "ucuncuMizrakBox";
 			this.ucuncuMizrakBox.Size = new System.Drawing.Size(155, 23);
-			this.ucuncuMizrakBox.TabIndex = 14;
+			this.ucuncuMizrakBox.TabIndex = 9;
 			// 
 			// consoleBox
 			// 
@@ -193,13 +195,13 @@
 			this.consoleBox.Name = "consoleBox";
 			this.consoleBox.ReadOnly = true;
 			this.consoleBox.Size = new System.Drawing.Size(217, 411);
-			this.consoleBox.TabIndex = 16;
+			this.consoleBox.TabIndex = 12;
 			this.consoleBox.Text = "";
 			// 
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(25, 238);
+			this.label8.Location = new System.Drawing.Point(30, 258);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(47, 15);
 			this.label8.TabIndex = 17;
@@ -208,7 +210,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(303, 238);
+			this.label9.Location = new System.Drawing.Point(303, 258);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(47, 15);
 			this.label9.TabIndex = 18;
@@ -217,7 +219,7 @@
 			// kislaStatus
 			// 
 			this.kislaStatus.AutoSize = true;
-			this.kislaStatus.Location = new System.Drawing.Point(78, 225);
+			this.kislaStatus.Location = new System.Drawing.Point(83, 258);
 			this.kislaStatus.Name = "kislaStatus";
 			this.kislaStatus.Size = new System.Drawing.Size(0, 15);
 			this.kislaStatus.TabIndex = 19;
@@ -225,7 +227,7 @@
 			// temizleStatus
 			// 
 			this.temizleStatus.AutoSize = true;
-			this.temizleStatus.Location = new System.Drawing.Point(356, 225);
+			this.temizleStatus.Location = new System.Drawing.Point(356, 258);
 			this.temizleStatus.Name = "temizleStatus";
 			this.temizleStatus.Size = new System.Drawing.Size(0, 15);
 			this.temizleStatus.TabIndex = 20;
@@ -235,7 +237,7 @@
 			this.dorduncuMizrakBox.Location = new System.Drawing.Point(392, 159);
 			this.dorduncuMizrakBox.Name = "dorduncuMizrakBox";
 			this.dorduncuMizrakBox.Size = new System.Drawing.Size(155, 23);
-			this.dorduncuMizrakBox.TabIndex = 21;
+			this.dorduncuMizrakBox.TabIndex = 10;
 			// 
 			// label10
 			// 
@@ -246,11 +248,29 @@
 			this.label10.TabIndex = 22;
 			this.label10.Text = "4.Mızrak Sayısı";
 			// 
+			// okcuSayisiBox
+			// 
+			this.okcuSayisiBox.Location = new System.Drawing.Point(95, 99);
+			this.okcuSayisiBox.Name = "okcuSayisiBox";
+			this.okcuSayisiBox.Size = new System.Drawing.Size(155, 23);
+			this.okcuSayisiBox.TabIndex = 3;
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(22, 102);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(67, 15);
+			this.label11.TabIndex = 24;
+			this.label11.Text = "Okçu Sayısı";
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.label11);
+			this.Controls.Add(this.okcuSayisiBox);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.dorduncuMizrakBox);
 			this.Controls.Add(this.temizleStatus);
@@ -306,5 +326,7 @@
         private Label temizleStatus;
 		private TextBox dorduncuMizrakBox;
 		private Label label10;
+		private TextBox okcuSayisiBox;
+		private Label label11;
 	}
 }

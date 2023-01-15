@@ -16,19 +16,6 @@ namespace klanlar
 		Timer? kislaTimer;
 		Timer? temizlikTimer;
 		const string KISLA_FILE_PATH = "./klanlar.xml";
-		static void RT(Action action, int seconds, CancellationToken token)
-		{
-			if (action == null)
-				return;
-			Task.Run(async () =>
-			{
-				while (!token.IsCancellationRequested)
-				{
-					action();
-					await Task.Delay(TimeSpan.FromSeconds(seconds), token);
-				}
-			}, token);
-		}
 
 		public Form1()
 		{
@@ -39,6 +26,18 @@ namespace klanlar
 			setStatusTexts();
 			driver.Manage().Window.Maximize();
 			driver.Navigate().GoToUrl("https://www.klanlar.org/");
+
+			birinciMizrakBox.GotFocus += (sender, e) => { birinciMizrakBox.SelectAll(); };
+			birinciMizrakBox.Click += (sender, e) => { birinciMizrakBox.SelectAll(); };
+
+			ikinciMizrakBox.GotFocus += (sender, e) => { ikinciMizrakBox.SelectAll(); };
+			ikinciMizrakBox.Click += (sender, e) => { ikinciMizrakBox.SelectAll(); };
+
+			ucuncuMizrakBox.GotFocus += (sender, e) => { ucuncuMizrakBox.SelectAll(); };
+			ucuncuMizrakBox.Click += (sender, e) => { ucuncuMizrakBox.SelectAll(); };
+
+			dorduncuMizrakBox.GotFocus += (sender, e) => { dorduncuMizrakBox.SelectAll(); };
+			dorduncuMizrakBox.Click += (sender, e) => { dorduncuMizrakBox.SelectAll(); };
 		}
 
 		private void button1_Click(object sender, EventArgs e)
@@ -94,6 +93,21 @@ namespace klanlar
 				else
 				{
 					spear.SendKeys(mizrakBox.Text);
+				}
+
+				var archer = driver.FindElement(By.Name("archer"));
+				if (okcuSayisiBox.Text == "")
+				{
+					var total = driver.FindElement(By.Id("archer_0_a"));
+					total.Click();
+				}
+				else if (mizrakBox.Text == "0")
+				{
+
+				}
+				else
+				{
+					archer.SendKeys(okcuSayisiBox.Text);
 				}
 
 
@@ -157,17 +171,45 @@ namespace klanlar
 						switch (i)
 						{
 							case 0:
-								spear.SendKeys(birinciMizrakBox.Text);
-								break;
+								if (birinciMizrakBox.Text.Length > 0)
+								{
+									spear.SendKeys(birinciMizrakBox.Text);
+									break;
+								}
+								else
+								{
+									continue;
+								}
 							case 1:
-								spear.SendKeys(ikinciMizrakBox.Text);
-								break;
+								if (ikinciMizrakBox.Text.Length > 0)
+								{
+									spear.SendKeys(ikinciMizrakBox.Text);
+									break;
+								}
+								else
+								{
+									continue;
+								}
 							case 2:
-								spear.SendKeys(ucuncuMizrakBox.Text);
-								break;
+								if (ucuncuMizrakBox.Text.Length > 0)
+								{
+									spear.SendKeys(ucuncuMizrakBox.Text);
+									break;
+								}
+								else
+								{
+									continue;
+								}
 							case 3:
-								spear.SendKeys(dorduncuMizrakBox.Text);
-								break;
+								if (dorduncuMizrakBox.Text.Length > 0)
+								{
+									spear.SendKeys(dorduncuMizrakBox.Text);
+									break;
+								}
+								else
+								{
+									continue;
+								}
 							default:
 								break;
 						}
@@ -229,6 +271,7 @@ namespace klanlar
 					new XElement("root",
 						new XElement("kisla_link", ""),
 						new XElement("kisla_mizrak", ""),
+						new XElement("kisla_okcu", ""),
 						new XElement("kisla_dakika", ""),
 						new XElement("temizlik_link", ""),
 						new XElement("temizlik_bir", ""),
@@ -248,6 +291,8 @@ namespace klanlar
 			kislaLinkBox.Text = kislaLinkNode.InnerText;
 			XmlNode kislaMizrakNode = currentDoc.DocumentElement.SelectSingleNode("/root/kisla_mizrak");
 			mizrakBox.Text = kislaMizrakNode.InnerText;
+			XmlNode kislaOkcuNode = currentDoc.DocumentElement.SelectSingleNode("/root/kisla_okcu");
+			okcuSayisiBox.Text = kislaOkcuNode.InnerText;
 			XmlNode kislaDakikaNode = currentDoc.DocumentElement.SelectSingleNode("/root/kisla_dakika");
 			kislaDakikaBox.Text = kislaDakikaNode.InnerText;
 
@@ -272,6 +317,8 @@ namespace klanlar
 			kislaLinkNode.InnerText = kislaLinkBox.Text;
 			XmlNode kislaMizrakNode = currentDoc.DocumentElement.SelectSingleNode("/root/kisla_mizrak");
 			kislaMizrakNode.InnerText = mizrakBox.Text;
+			XmlNode kislaOkcuNode = currentDoc.DocumentElement.SelectSingleNode("/root/kisla_okcu");
+			kislaOkcuNode.InnerText = okcuSayisiBox.Text;
 			XmlNode kislaDakikaNode = currentDoc.DocumentElement.SelectSingleNode("/root/kisla_dakika");
 			kislaDakikaNode.InnerText = kislaDakikaBox.Text;
 
