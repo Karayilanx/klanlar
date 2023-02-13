@@ -95,21 +95,27 @@ namespace klanlar
 					spear.SendKeys(mizrakBox.Text);
 				}
 
-				var archer = driver.FindElement(By.Name("archer"));
-				if (okcuSayisiBox.Text == "")
+				try
 				{
-					var total = driver.FindElement(By.Id("archer_0_a"));
-					total.Click();
+					var archer = driver.FindElement(By.Name("archer"));
+					if (okcuSayisiBox.Text == "")
+					{
+						var total = driver.FindElement(By.Id("archer_0_a"));
+						total.Click();
+					}
+					else if (mizrakBox.Text == "0")
+					{
+
+					}
+					else
+					{
+						archer.SendKeys(okcuSayisiBox.Text);
+					}
 				}
-				else if (mizrakBox.Text == "0")
+				catch
 				{
 
 				}
-				else
-				{
-					archer.SendKeys(okcuSayisiBox.Text);
-				}
-
 
 				var sendBtn = driver.FindElements(By.ClassName("btn-recruit"))[0];
 				appendText("Asker Basýldý", true);
